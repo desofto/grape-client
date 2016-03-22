@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+    body:
+      encoding: UTF-8
+      string: '{"id":2,"created_at":"2016-03-22T10:12:26Z","updated_at":"2016-03-22T10:12:26Z","meta":{"href":"https://localhost:3000/api/v1/users/2"},"email":"test-1@example.com"}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 12:15:58 GMT
+- request:
+    method: delete
+    uri: http://user:password@localhost:3000/api/v1/users/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '117'
+    body:
+      encoding: UTF-8
+      string: '{"id":2,"email":"test-1@example.com","created_at":"2016-03-22T10:12:26.966Z","updated_at":"2016-03-22T10:12:26.966Z"}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 12:15:58 GMT
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: 'Not Found '
+    headers:
+      Content-Type:
+      - text/json
+      Content-Length:
+      - '31'
+    body:
+      encoding: UTF-8
+      string: '{"message":"Record not found."}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 12:15:58 GMT
+recorded_with: VCR 3.0.1

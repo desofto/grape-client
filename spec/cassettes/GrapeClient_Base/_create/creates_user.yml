@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://user:password@localhost:3000/api/v1/users/
+    body:
+      encoding: US-ASCII
+      string: user%5Bemail%5D=test%40example.com
+    headers: {}
+  response:
+    status:
+      code: 201
+      message: 'Created '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '117'
+    body:
+      encoding: UTF-8
+      string: '{"id":303,"email":"test@example.com","created_at":"2016-03-22T12:10:50.594Z","updated_at":"2016-03-22T12:10:50.594Z"}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 12:10:50 GMT
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users/303
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '167'
+    body:
+      encoding: UTF-8
+      string: '{"id":303,"created_at":"2016-03-22T12:10:50Z","updated_at":"2016-03-22T12:10:50Z","meta":{"href":"https://localhost:3000/api/v1/users/303"},"email":"test@example.com"}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 12:10:50 GMT
+recorded_with: VCR 3.0.1

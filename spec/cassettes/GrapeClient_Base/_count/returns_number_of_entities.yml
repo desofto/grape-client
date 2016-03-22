@@ -1,0 +1,31 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Link:
+      - <http://localhost:3000/api/v1/users?page=12>; rel="last", <http://localhost:3000/api/v1/users?page=2>;
+        rel="next"
+      Total:
+      - '300'
+      Per-Page:
+      - '25'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4352'
+    body:
+      encoding: UTF-8
+      string: '{"users":[{"id":1,"created_at":"2016-03-22T10:12:26Z","updated_at":"2016-03-22T10:12:26Z","meta":{"href":"https://localhost:3000/api/v1/users/1"},"email":"test-0@example.com"},{"id":101,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/101"},"email":"test-100@example.com"},{"id":102,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/102"},"email":"test-101@example.com"},{"id":103,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/103"},"email":"test-102@example.com"},{"id":104,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/104"},"email":"test-103@example.com"},{"id":105,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/105"},"email":"test-104@example.com"},{"id":106,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/106"},"email":"test-105@example.com"},{"id":107,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/107"},"email":"test-106@example.com"},{"id":108,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/108"},"email":"test-107@example.com"},{"id":109,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/109"},"email":"test-108@example.com"},{"id":110,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/110"},"email":"test-109@example.com"},{"id":11,"created_at":"2016-03-22T10:12:27Z","updated_at":"2016-03-22T10:12:27Z","meta":{"href":"https://localhost:3000/api/v1/users/11"},"email":"test-10@example.com"},{"id":111,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/111"},"email":"test-110@example.com"},{"id":112,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/112"},"email":"test-111@example.com"},{"id":113,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/113"},"email":"test-112@example.com"},{"id":114,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/114"},"email":"test-113@example.com"},{"id":115,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/115"},"email":"test-114@example.com"},{"id":116,"created_at":"2016-03-22T10:12:32Z","updated_at":"2016-03-22T10:12:32Z","meta":{"href":"https://localhost:3000/api/v1/users/116"},"email":"test-115@example.com"},{"id":117,"created_at":"2016-03-22T10:12:33Z","updated_at":"2016-03-22T10:12:33Z","meta":{"href":"https://localhost:3000/api/v1/users/117"},"email":"test-116@example.com"},{"id":118,"created_at":"2016-03-22T10:12:33Z","updated_at":"2016-03-22T10:12:33Z","meta":{"href":"https://localhost:3000/api/v1/users/118"},"email":"test-117@example.com"},{"id":119,"created_at":"2016-03-22T10:12:33Z","updated_at":"2016-03-22T10:12:33Z","meta":{"href":"https://localhost:3000/api/v1/users/119"},"email":"test-118@example.com"},{"id":120,"created_at":"2016-03-22T10:12:33Z","updated_at":"2016-03-22T10:12:33Z","meta":{"href":"https://localhost:3000/api/v1/users/120"},"email":"test-119@example.com"},{"id":12,"created_at":"2016-03-22T10:12:27Z","updated_at":"2016-03-22T10:12:27Z","meta":{"href":"https://localhost:3000/api/v1/users/12"},"email":"test-11@example.com"},{"id":121,"created_at":"2016-03-22T10:12:35Z","updated_at":"2016-03-22T10:12:35Z","meta":{"href":"https://localhost:3000/api/v1/users/121"},"email":"test-120@example.com"},{"id":122,"created_at":"2016-03-22T10:12:35Z","updated_at":"2016-03-22T10:12:35Z","meta":{"href":"https://localhost:3000/api/v1/users/122"},"email":"test-121@example.com"}],"meta":{"href":"http://localhost:3000/api/v1/users"}}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 11:02:34 GMT
+recorded_with: VCR 3.0.1
