@@ -1,16 +1,15 @@
 module GrapeClient
   class Base
-    extend Accessors
-    mattr_accessor :site, :user, :password, :prefix
-
-    extend RestMethodsCollection
     include RestMethodsMember
 
-    extend BelongsTo
-
+    mattr_accessor :site, :user, :password, :prefix
     attr_reader :attributes
 
     class << self
+      include Accessors
+      include RestMethodsCollection
+      include BelongsTo
+
       def attr_accessor(*names)
         attributes = self.attributes
         names.each do |name|
