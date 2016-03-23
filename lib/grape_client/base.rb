@@ -6,6 +6,8 @@ module GrapeClient
     extend RestMethodsCollection
     include RestMethodsMember
 
+    extend BelongsTo
+
     attr_reader :attributes
 
     class << self
@@ -13,25 +15,6 @@ module GrapeClient
         attributes = self.attributes
         names.each do |name|
           attributes << name.to_sym
-        end
-      end
-
-      def belongs_to(property, options = {})
-        attr_accessor "#{property}_id"
-
-        define_method(property) do
-          @attributes[property] ||= retrive_object(options[:class_name] || property,
-                                                   self["#{property}_id"])
-        end
-
-        define_method("#{property}=") do |object|
-          self["#{property}_id"] = object.id
-          @attributes[property] = object
-        end
-
-        define_method("#{property}_id=") do |id|
-          @attributes[property] = nil
-          self["#{property}_id"] = id
         end
       end
 
@@ -92,6 +75,12 @@ module GrapeClient
       end
     end
 
+    def respond_to?(method_name, *args, &block)
+      name = method_name.to_s
+      name = name[0..-2] if name.last == '='
+      self.class.attributes.include?(name.to_sym) || super
+    end
+
     def to_post
       entity_name = self.class.entity_name
       list = self.class.attributes
@@ -101,8 +90,8 @@ module GrapeClient
 
     private
 
-    def retrive_object(name, id)
-      name.to_s.camelcase.constantize.find(id) if id.present?
+    def class_from_name(name)
+      name.to_s.camelcase.constantize
     end
   end
 end
