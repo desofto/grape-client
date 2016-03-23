@@ -8,6 +8,7 @@ module GrapeClient
     class << self
       include RestMethodsCollection
       include BelongsTo
+      include HasMany
 
       def attr_accessor(*names)
         attributes = self.attributes

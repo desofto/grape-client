@@ -18,6 +18,8 @@ class Group < GrapeClient::Base
   self.prefix   = '/api/v1/'
 
   attr_accessor :id, :name
+
+  has_many :users
 end
 
 describe GrapeClient::Base, :vcr do
@@ -115,6 +117,17 @@ describe GrapeClient::Base, :vcr do
       user = User.create(email: 'test@example.com', group: group)
 
       expect(user.reload.group.name).to eq 'test'
+    end
+  end
+
+  describe '.has_many' do
+    it 'returns objects' do
+      group = Group.create(name: 'test')
+      User.create(email: 'test_1@example.com', group: group)
+      User.create(email: 'test_2@example.com', group: group)
+
+      emails = group.reload.users.map(&:email)
+      expect(emails).to match_array ['test_1@example.com', 'test_2@example.com']
     end
   end
 end
