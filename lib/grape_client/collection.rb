@@ -13,38 +13,40 @@ module GrapeClient
     end
 
     def each(&_block)
-      prepare_for_iteration
-      loop do
-        @elements.each do |attrs|
+      per_page do |elements|
+        elements.each do |attrs|
           yield @clazz.new(attrs)
         end
-        break unless load_next_page
       end
     end
 
     def map(&_block)
-      prepare_for_iteration
       result = []
-      loop do
-        result += @elements.map do |attrs|
+      per_page do |elements|
+        result += elements.map do |attrs|
           yield @clazz.new(attrs)
         end
-        break unless load_next_page
       end
       result
     end
 
     def collect
-      prepare_for_iteration
       result = []
-      loop do
-        result += @elements
-        break unless load_next_page
+      per_page do |elements|
+        result += elements
       end
       result
     end
 
     private
+
+    def per_page
+      prepare_for_iteration
+      loop do
+        yield @elements
+        break unless load_next_page
+      end
+    end
 
     def update(elements, headers = nil)
       @elements = elements
