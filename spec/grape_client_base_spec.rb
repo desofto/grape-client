@@ -7,6 +7,17 @@ class User < GrapeClient::Base
   self.prefix = '/api/v1/'
 
   field_accessor :id, :email
+
+  belongs_to :group
+end
+
+class Group < GrapeClient::Base
+  self.site     = 'http://localhost:3000'
+  self.user     = 'user'
+  self.password = 'password'
+  self.prefix = '/api/v1/'
+
+  field_accessor :id, :name
 end
 
 describe GrapeClient::Base, :vcr do
@@ -95,6 +106,15 @@ describe GrapeClient::Base, :vcr do
       user.destroy
 
       expect { user.reload }.to raise_error GrapeClient::Connection::UnknownError
+    end
+  end
+
+  describe '.belongs_to' do
+    it 'creates nested objects' do
+      group = Group.create(name: 'test')
+      user = User.create(email: 'test@example.com', group: group)
+
+      expect(user.reload.group.name).to eq 'test'
     end
   end
 end

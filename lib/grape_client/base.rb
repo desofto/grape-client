@@ -16,6 +16,25 @@ module GrapeClient
         end
       end
 
+      def belongs_to(property, options = {})
+        field_accessor "#{property}_id"
+
+        define_method(property) do
+          @attributes[property] ||= retrive_object(options[:class_name] || property,
+                                                   self["#{property}_id"])
+        end
+
+        define_method("#{property}=") do |object|
+          self["#{property}_id"] = object.id
+          @attributes[property] = object
+        end
+
+        define_method("#{property}_id=") do |id|
+          @attributes[property] = nil
+          self["#{property}_id"] = id
+        end
+      end
+
       def connection
         @connection ||= Connection.new(user, password)
       end
@@ -39,14 +58,14 @@ module GrapeClient
     end
 
     def initialize(attrs = {})
-      @attributes = {}
       self.attributes = attrs
     end
 
     def attributes=(attrs)
+      @attributes = {}
       attributes = self.class.attributes
       attrs.each do |name, value|
-        next unless attributes.include? name.to_sym
+        next unless attributes.include?(name.to_sym) || methods.include?(name.to_sym)
         send("#{name}=", value)
       end
     end
@@ -75,7 +94,15 @@ module GrapeClient
 
     def to_post
       entity_name = self.class.entity_name
-      attributes.transform_keys { |key| "#{entity_name}[#{key}]" }
+      list = self.class.attributes
+      filtered_attributes = attributes.select { |key, _value| list.include? key }
+      filtered_attributes.transform_keys { |key| "#{entity_name}[#{key}]" }
+    end
+
+    private
+
+    def retrive_object(name, id)
+      name.to_s.camelcase.constantize.find(id) if id.present?
     end
   end
 end
