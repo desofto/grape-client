@@ -6,7 +6,6 @@ module GrapeClient
     attr_reader :attributes
 
     class << self
-      include Accessors
       include RestMethodsCollection
       include BelongsTo
 
