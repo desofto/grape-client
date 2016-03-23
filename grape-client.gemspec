@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Simple access from your client to Grape APIs.'
   spec.description   = 'Simple access from your client to Grape APIs.'\
                        'Automatically supports: kaminari pagination, '\
-                       'network access, nested objects.'
+                       'network access cache, nested objects, http basic authentication.'
   spec.homepage      = 'https://github.com/desofto/grape-client'
   spec.license       = 'MIT'
 

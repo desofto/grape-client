@@ -4,7 +4,7 @@
 [![Test Coverage](https://codeclimate.com/github/desofto/grape-client/badges/coverage.svg)](https://codeclimate.com/github/desofto/grape-client/coverage)
 
 Simple access from your client to Grape APIs.
-Automatically supports: kaminari pagination, network access, nested objects.
+Automatically supports: kaminari pagination, network access cache, nested objects, http basic authentication.
 
 ## Installation
 
