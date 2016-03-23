@@ -3,6 +3,9 @@
 [![Code Climate](https://codeclimate.com/github/desofto/grape-client/badges/gpa.svg)](https://codeclimate.com/github/desofto/grape-client)
 [![Test Coverage](https://codeclimate.com/github/desofto/grape-client/badges/coverage.svg)](https://codeclimate.com/github/desofto/grape-client/coverage)
 
+Simple access from your client to Grape APIs.
+Automatically supports: kaminari pagination, network access, nested objects.
+
 ## Installation
 
 Add this line to your application's Gemfile:
