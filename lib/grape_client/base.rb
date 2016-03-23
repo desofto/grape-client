@@ -9,7 +9,7 @@ module GrapeClient
     attr_reader :attributes
 
     class << self
-      def field_accessor(*names)
+      def attr_accessor(*names)
         attributes = self.attributes
         names.each do |name|
           attributes << name.to_sym
@@ -17,7 +17,7 @@ module GrapeClient
       end
 
       def belongs_to(property, options = {})
-        field_accessor "#{property}_id"
+        attr_accessor "#{property}_id"
 
         define_method(property) do
           @attributes[property] ||= retrive_object(options[:class_name] || property,

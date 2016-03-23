@@ -29,9 +29,9 @@ class User < GrapeClient::Base
   self.site     = 'http://localhost:3000'
   self.user     = 'user'
   self.password = 'password'
-  self.prefix = '/api/v1/'
+  self.prefix   = '/api/v1/'
 
-  field_accessor :id, :email
+  attr_accessor :id, :email
 end
 
 u = User.create(email: 'test@example.com')

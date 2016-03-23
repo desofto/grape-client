@@ -4,9 +4,9 @@ class User < GrapeClient::Base
   self.site     = 'http://localhost:3000'
   self.user     = 'user'
   self.password = 'password'
-  self.prefix = '/api/v1/'
+  self.prefix   = '/api/v1/'
 
-  field_accessor :id, :email
+  attr_accessor :id, :email
 
   belongs_to :group
 end
@@ -15,9 +15,9 @@ class Group < GrapeClient::Base
   self.site     = 'http://localhost:3000'
   self.user     = 'user'
   self.password = 'password'
-  self.prefix = '/api/v1/'
+  self.prefix   = '/api/v1/'
 
-  field_accessor :id, :name
+  attr_accessor :id, :name
 end
 
 describe GrapeClient::Base, :vcr do

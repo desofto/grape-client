@@ -10,7 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ['dmitry@desofto.com']
 
   spec.summary       = 'Simple access from your client to Grape APIs.'
-  spec.description   = 'Simple access from your client to Grape APIs. Automatically supports: kaminari pagination, network access, nested objects.'
+  spec.description   = 'Simple access from your client to Grape APIs.'\
+                       'Automatically supports: kaminari pagination, '\
+                       'network access, nested objects.'
   spec.homepage      = 'https://github.com/desofto/grape-client'
   spec.license       = 'MIT'
 
