@@ -179,7 +179,8 @@ describe GrapeClient::Base, :vcr do
       User.create(email: 'test_2@example.com', group: group)
 
       group.reload
-      expect(group.lazy_users).not_to be_empty
+      expect(group.lazy_users.any?).to be_truthy
+      expect(group.lazy_users.empty?).to be_falsey
 
       emails = group.lazy_users.map(&:email)
       expect(emails).to match_array ['test_1@example.com', 'test_2@example.com']
