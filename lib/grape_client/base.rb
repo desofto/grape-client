@@ -2,21 +2,23 @@ module GrapeClient
   class Base
     include RestMethodsMember
 
-    mattr_accessor :site, :user, :password, :prefix
     attr_reader :attributes
-
-    self.site      = GrapeClient.configuration.site
-    self.user      = GrapeClient.configuration.user
-    self.password  = GrapeClient.configuration.password
-    self.prefix    = GrapeClient.configuration.prefix
 
     class << self
       include RestMethodsCollection
       include BelongsTo
       include HasMany
 
+      mattr_accessor :attributes
+      mattr_accessor :site, :user, :password, :prefix
+
+      self.attributes = []
+      self.site       = GrapeClient.configuration.site
+      self.user       = GrapeClient.configuration.user
+      self.password   = GrapeClient.configuration.password
+      self.prefix     = GrapeClient.configuration.prefix
+
       def attr_accessor(*names)
-        attributes = self.attributes
         names.each do |name|
           attributes << name.to_sym
         end
@@ -36,11 +38,6 @@ module GrapeClient
 
       def endpoint
         site + prefix + entity_name.pluralize
-      end
-
-      def attributes
-        class_variable_set('@@attributes', []) unless class_variable_defined?('@@attributes')
-        class_variable_get('@@attributes')
       end
     end
 
