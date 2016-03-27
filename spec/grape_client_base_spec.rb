@@ -6,6 +6,12 @@ class User < GrapeClient::Base
   belongs_to :group
 end
 
+class UserWithName < User
+  self.site = 'https://localhost:3333'
+
+  attr_accessor :name
+end
+
 class Group < GrapeClient::Base
   attr_accessor :id, :name
 
@@ -118,6 +124,23 @@ describe GrapeClient::Base, :vcr do
 
       emails = group.reload.users.map(&:email)
       expect(emails).to match_array ['test_1@example.com', 'test_2@example.com']
+    end
+  end
+
+  describe '.attributes' do
+    it 'User' do
+      expect(User.site).to match 'http://localhost:3000'
+      expect(User.attributes).to match [:id, :email, :group_id]
+    end
+
+    it 'Group' do
+      expect(Group.site).to match 'http://localhost:3000'
+      expect(Group.attributes).to match [:id, :name]
+    end
+
+    it 'UserWithName' do
+      expect(UserWithName.site).to match 'https://localhost:3333'
+      expect(UserWithName.attributes).to match [:id, :email, :group_id, :name]
     end
   end
 end
