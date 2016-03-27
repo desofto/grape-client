@@ -5,7 +5,7 @@ class User < GrapeClient::Base
 
   belongs_to :group
   belongs_to :preloaded_group,
-    class_name: :Group
+             class_name: :Group
 end
 
 class UserWithName < User
@@ -20,7 +20,7 @@ class Group < GrapeClient::Base
   has_many :users
 
   has_many :lazy_users,
-    class_name: :User
+           class_name: :User
 end
 
 describe GrapeClient::Base, :vcr do
