@@ -1,22 +1,12 @@
 require 'spec_helper'
 
 class User < GrapeClient::Base
-  self.site     = 'http://localhost:3000'
-  self.user     = 'user'
-  self.password = 'password'
-  self.prefix   = '/api/v1/'
-
   attr_accessor :id, :email
 
   belongs_to :group
 end
 
 class Group < GrapeClient::Base
-  self.site     = 'http://localhost:3000'
-  self.user     = 'user'
-  self.password = 'password'
-  self.prefix   = '/api/v1/'
-
   attr_accessor :id, :name
 
   has_many :users
