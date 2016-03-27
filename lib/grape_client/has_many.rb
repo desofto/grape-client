@@ -5,7 +5,7 @@ module GrapeClient
         clazz = class_from_name(options[:class_name] || property.to_s.singularize)
         case @attributes[property]
         when Collection then @attributes[property]
-        when nil?
+        when nil
           @attributes[property] = clazz.where("#{self.class.entity_name}_id" => id)
         else
           @attributes[property].map! do |element|

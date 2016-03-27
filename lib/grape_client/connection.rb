@@ -50,8 +50,8 @@ module GrapeClient
     def validate_response(res)
       case res
       when Net::HTTPUnauthorized        then raise Unauthorized
-      when Net::HTTPSuccess             then res.body
       when Net::HTTPUnprocessableEntity then raise InvalidEntity
+      when Net::HTTPSuccess             then res.body
       else raise UnknownError, res.body
       end
     end
