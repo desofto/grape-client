@@ -13,7 +13,7 @@ module GrapeClient
       attr_accessor :site, :user, :password, :prefix
 
       def inherited(child)
-        child.attributes = self.attributes.try(:dup) || []
+        child.attributes = attributes.try(:dup) || []
         child.site       = GrapeClient.configuration.site
         child.user       = GrapeClient.configuration.user
         child.password   = GrapeClient.configuration.password
