@@ -1,4 +1,5 @@
 # GrapeClient
+[![Gem Version](https://badge.fury.io/rb/grape-client.svg)](https://badge.fury.io/rb/grape-client)
 [![Build Status](https://travis-ci.org/desofto/grape-client.svg?branch=master)](https://travis-ci.org/desofto/grape-client)
 [![Code Climate](https://codeclimate.com/github/desofto/grape-client/badges/gpa.svg)](https://codeclimate.com/github/desofto/grape-client)
 [![Test Coverage](https://codeclimate.com/github/desofto/grape-client/badges/coverage.svg)](https://codeclimate.com/github/desofto/grape-client/coverage)
