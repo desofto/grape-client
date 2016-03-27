@@ -35,11 +35,11 @@ module GrapeClient
       end
 
       def entity_name
-        name.split('::').last.underscore
+        @entity_name ||= name.split('::').last.underscore
       end
 
       def endpoint
-        site + prefix + entity_name.pluralize
+        @endpoint ||= site + prefix + entity_name.pluralize
       end
     end
 
