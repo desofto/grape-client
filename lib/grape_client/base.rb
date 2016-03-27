@@ -13,11 +13,11 @@ module GrapeClient
       attr_accessor :site, :user, :password, :prefix
 
       def inherited(child)
-        child.instance_variable_set('@attributes', attributes.try(:dup) || [])
-        child.instance_variable_set('@site',       GrapeClient.configuration.site)
-        child.instance_variable_set('@user',       GrapeClient.configuration.user)
-        child.instance_variable_set('@password',   GrapeClient.configuration.password)
-        child.instance_variable_set('@prefix',     GrapeClient.configuration.prefix)
+        child.instance_variable_set(:'@attributes', attributes.try(:dup) || [])
+        child.instance_variable_set(:'@site',       GrapeClient.configuration.site)
+        child.instance_variable_set(:'@user',       GrapeClient.configuration.user)
+        child.instance_variable_set(:'@password',   GrapeClient.configuration.password)
+        child.instance_variable_set(:'@prefix',     GrapeClient.configuration.prefix)
       end
 
       def attr_accessor(*names)
@@ -52,7 +52,7 @@ module GrapeClient
       attributes = self.class.attributes
       attrs.each do |name, value|
         next unless attributes.include?(name.to_sym) || methods.include?(name.to_sym)
-        send("#{name}=", value)
+        send(:"#{name}=", value)
       end
     end
 

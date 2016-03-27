@@ -6,7 +6,7 @@ module GrapeClient
         case @attributes[property]
         when Collection then @attributes[property]
         when nil
-          @attributes[property] = clazz.where("#{self.class.entity_name}_id" => id)
+          @attributes[property] = clazz.where(:"#{self.class.entity_name}_id" => id)
         else
           @attributes[property].map! do |element|
             next element unless element.is_a? Hash
@@ -15,7 +15,7 @@ module GrapeClient
         end
       end
 
-      define_method("#{property}=") do |array|
+      define_method(:"#{property}=") do |array|
         @attributes[property] = array
       end
     end

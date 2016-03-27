@@ -89,11 +89,11 @@ module GrapeClient
     end
 
     def extract_first_page_link(headers)
-      extract_page_link(headers, 'first')
+      extract_page_link(headers, :first)
     end
 
     def extract_next_page_link(headers)
-      extract_page_link(headers, 'next')
+      extract_page_link(headers, :next)
     end
 
     def extract_page_link(headers, title)
