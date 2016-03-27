@@ -79,15 +79,18 @@ module GrapeClient
     end
 
     def respond_to?(method_name, *args, &block)
-      name = method_name.to_s
-      name = name[0..-2] if name.last == '='
-      self.class.attributes.include?(name.to_sym) || super
+      super ||
+        begin
+          name = method_name.to_s
+          name = name[0..-2] if name.last == '='
+          self.class.attributes.include?(name.to_sym)
+        end
     end
 
     def to_post
-      entity_name = self.class.entity_name
       list = self.class.attributes
       filtered_attributes = attributes.select { |key, _value| list.include? key }
+      entity_name = self.class.entity_name
       filtered_attributes.transform_keys { |key| "#{entity_name}[#{key}]" }
     end
 
