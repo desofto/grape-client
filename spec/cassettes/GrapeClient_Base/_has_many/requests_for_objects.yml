@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://user:password@localhost:3000/api/v1/groups/
+    body:
+      encoding: US-ASCII
+      string: group%5Bname%5D=test
+    headers: {}
+  response:
+    status:
+      code: 201
+      message: 'Created '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '103'
+    body:
+      encoding: UTF-8
+      string: '{"id":60,"name":"test","created_at":"2016-03-27T14:23:34.456Z","updated_at":"2016-03-27T14:23:34.456Z"}'
+    http_version: 
+  recorded_at: Sun, 27 Mar 2016 14:23:34 GMT
+- request:
+    method: post
+    uri: http://qwe:password@localhost:3000/api/v1/users/
+    body:
+      encoding: US-ASCII
+      string: user%5Bemail%5D=test_1%40example.com&user%5Bgroup_id%5D=60
+    headers: {}
+  response:
+    status:
+      code: 201
+      message: 'Created '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '133'
+    body:
+      encoding: UTF-8
+      string: '{"id":374,"email":"test_1@example.com","created_at":"2016-03-27T14:23:34.628Z","updated_at":"2016-03-27T14:23:34.628Z","group_id":60}'
+    http_version: 
+  recorded_at: Sun, 27 Mar 2016 14:23:34 GMT
+- request:
+    method: post
+    uri: http://qwe:password@localhost:3000/api/v1/users/
+    body:
+      encoding: US-ASCII
+      string: user%5Bemail%5D=test_2%40example.com&user%5Bgroup_id%5D=60
+    headers: {}
+  response:
+    status:
+      code: 201
+      message: 'Created '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '133'
+    body:
+      encoding: UTF-8
+      string: '{"id":375,"email":"test_2@example.com","created_at":"2016-03-27T14:23:34.735Z","updated_at":"2016-03-27T14:23:34.735Z","group_id":60}'
+    http_version: 
+  recorded_at: Sun, 27 Mar 2016 14:23:34 GMT
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/groups/60
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '385'
+    body:
+      encoding: UTF-8
+      string: '{"id":60,"created_at":"2016-03-27T14:23:34Z","updated_at":"2016-03-27T14:23:34Z","meta":null,"name":"test","users":[{"id":374,"email":"test_1@example.com","created_at":"2016-03-27T14:23:34.628Z","updated_at":"2016-03-27T14:23:34.628Z","group_id":60},{"id":375,"email":"test_2@example.com","created_at":"2016-03-27T14:23:34.735Z","updated_at":"2016-03-27T14:23:34.735Z","group_id":60}]}'
+    http_version: 
+  recorded_at: Sun, 27 Mar 2016 14:23:34 GMT
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users?group_id=60
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Total:
+      - '2'
+      Per-Page:
+      - '25'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1252'
+    body:
+      encoding: UTF-8
+      string: '{"users":[{"id":374,"created_at":"2016-03-27T14:23:34Z","updated_at":"2016-03-27T14:23:34Z","meta":{"href":"https://localhost:3000/api/v1/users/374"},"email":"test_1@example.com","preloaded_group":{"id":60,"created_at":"2016-03-27T14:23:34Z","updated_at":"2016-03-27T14:23:34Z","meta":null,"name":"test","users":[{"id":374,"email":"test_1@example.com","created_at":"2016-03-27T14:23:34.628Z","updated_at":"2016-03-27T14:23:34.628Z","group_id":60},{"id":375,"email":"test_2@example.com","created_at":"2016-03-27T14:23:34.735Z","updated_at":"2016-03-27T14:23:34.735Z","group_id":60}]},"group_id":60},{"id":375,"created_at":"2016-03-27T14:23:34Z","updated_at":"2016-03-27T14:23:34Z","meta":{"href":"https://localhost:3000/api/v1/users/375"},"email":"test_2@example.com","preloaded_group":{"id":60,"created_at":"2016-03-27T14:23:34Z","updated_at":"2016-03-27T14:23:34Z","meta":null,"name":"test","users":[{"id":374,"email":"test_1@example.com","created_at":"2016-03-27T14:23:34.628Z","updated_at":"2016-03-27T14:23:34.628Z","group_id":60},{"id":375,"email":"test_2@example.com","created_at":"2016-03-27T14:23:34.735Z","updated_at":"2016-03-27T14:23:34.735Z","group_id":60}]},"group_id":60}],"meta":{"href":"http://localhost:3000/api/v1/users?group_id=60"}}'
+    http_version: 
+  recorded_at: Sun, 27 Mar 2016 14:26:20 GMT
+recorded_with: VCR 3.0.1

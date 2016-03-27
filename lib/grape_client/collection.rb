@@ -38,6 +38,14 @@ module GrapeClient
       result
     end
 
+    def empty?
+      @is_first_page && @elements.empty?
+    end
+
+    def any?
+      !empty?
+    end
+
     private
 
     def per_page
