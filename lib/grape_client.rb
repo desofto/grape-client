@@ -9,4 +9,13 @@ module GrapeClient
 
     autoload file.camelize, "grape_client/#{file}"
   end
+
+  class << self
+    attr_accessor :configuration
+
+    def configure
+      self.configuration ||= Configuration.new
+      yield(configuration)
+    end
+  end
 end

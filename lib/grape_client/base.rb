@@ -5,6 +5,11 @@ module GrapeClient
     mattr_accessor :site, :user, :password, :prefix
     attr_reader :attributes
 
+    self.site      = GrapeClient.configuration.site
+    self.user      = GrapeClient.configuration.user
+    self.password  = GrapeClient.configuration.password
+    self.prefix    = GrapeClient.configuration.prefix
+
     class << self
       include RestMethodsCollection
       include BelongsTo
