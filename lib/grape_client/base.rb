@@ -9,15 +9,15 @@ module GrapeClient
       include BelongsTo
       include HasMany
 
-      attr_accessor :attributes
+      attr_reader :attributes
       attr_accessor :site, :user, :password, :prefix
 
       def inherited(child)
-        child.attributes = attributes.try(:dup) || []
-        child.site       = GrapeClient.configuration.site
-        child.user       = GrapeClient.configuration.user
-        child.password   = GrapeClient.configuration.password
-        child.prefix     = GrapeClient.configuration.prefix
+        child.instance_variable_set('@attributes', attributes.try(:dup) || [])
+        child.instance_variable_set('@site',       GrapeClient.configuration.site)
+        child.instance_variable_set('@user',       GrapeClient.configuration.user)
+        child.instance_variable_set('@password',   GrapeClient.configuration.password)
+        child.instance_variable_set('@prefix',     GrapeClient.configuration.prefix)
       end
 
       def attr_accessor(*names)

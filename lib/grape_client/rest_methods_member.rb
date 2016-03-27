@@ -32,19 +32,20 @@ module GrapeClient
 
     protected
 
+    def method_with_id(method)
+      [id, method].compact.join('/')
+    end
+
     def get(method, params = {}, &block)
-      method = [id, method].compact.join('/')
-      self.class.send(:get, method, params, &block)
+      self.class.send(:get, method_with_id(method), params, &block)
     end
 
     def put(method, params = {}, &block)
-      method = [id, method].compact.join('/')
-      self.class.send(:put, method, params, &block)
+      self.class.send(:put, method_with_id(method), params, &block)
     end
 
     def post(method, params = {}, &block)
-      method = [id, method].compact.join('/')
-      self.class.send(:post, method, params, &block)
+      self.class.send(:post, method_with_id(method), params, &block)
     end
 
     def delete(params = {}, &block)
