@@ -113,6 +113,12 @@ describe GrapeClient::Base, :vcr do
       expect(user.email).to eq 'test@example.com'
     end
 
+    it 'returns false on invalid user' do
+      user = User.new
+
+      expect(user.save).to be_falsey
+    end
+
     it 'fails on invalid user' do
       user = User.new
 

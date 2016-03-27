@@ -13,7 +13,7 @@ module GrapeClient
 
     def save
       save!
-    rescue Connection::InvalidEntity
+    rescue Connection::InvalidEntity, Connection::UnknownError
       false
     end
 
