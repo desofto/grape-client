@@ -33,7 +33,7 @@ module GrapeClient
     protected
 
     def method_with_id(method)
-      [id, method].compact.join('/')
+      [id, method].compact.join('/'.freeze)
     end
 
     def get(method, params = {}, &block)

@@ -48,8 +48,8 @@ module GrapeClient
     private
 
     def request(method, url, params = {}, &_block)
-      url = [endpoint, url].compact.join('/')
-      method = method.compact.join('/') if method.is_a? Array
+      url = [endpoint, url].compact.join('/'.freeze)
+      method = method.compact.join('/'.freeze) if method.is_a? Array
       response = connection.request method, url, params
       if block_given?
         yield response

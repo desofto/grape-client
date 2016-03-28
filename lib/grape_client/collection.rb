@@ -58,7 +58,7 @@ module GrapeClient
 
     def update(elements, headers = nil)
       @elements = elements
-      @count = headers['total'].first.try(:to_i) if headers
+      @count = headers['total'.freeze].first.try(:to_i) if headers
       @count ||= @elements.length
       @first_page_link = extract_first_page_link(headers)
       @next_page_link = extract_next_page_link(headers)
@@ -98,11 +98,11 @@ module GrapeClient
 
     def extract_page_link(headers, title)
       return unless headers.present?
-      links = headers['link'].try(:first)
+      links = headers['link'.freeze].try(:first)
       return unless links.present?
-      links = links.split(',').map do |link|
-        link = link.split(';').map(&:strip)
-        link.delete("rel=\"#{title}\"") ? link : nil
+      links = links.split(','.freeze).map do |link|
+        link = link.split(';'.freeze).map(&:strip)
+        link.delete("rel=\"#{title}\"".freeze) ? link : nil
       end.compact.flatten
       return unless links.any?
       links.first[1..-2]

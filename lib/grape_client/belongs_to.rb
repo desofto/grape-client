@@ -5,7 +5,7 @@ module GrapeClient
 
       define_method("#{property}_id=") do |id|
         @attributes[property] = nil
-        self["#{property}_id"] = id
+        self["#{property}_id".freeze] = id
       end
 
       define_object_getter(property, options)
@@ -20,7 +20,7 @@ module GrapeClient
         if @attributes[property].is_a? Hash
           @attributes[property] = clazz.new(@attributes[property])
         else
-          id = self["#{property}_id"]
+          id = self["#{property}_id".freeze]
           @attributes[property] ||= clazz.find(id) if id.present?
         end
       end
@@ -28,7 +28,7 @@ module GrapeClient
 
     def define_object_setter(property, _options = {})
       define_method("#{property}=") do |value|
-        self["#{property}_id"] = value.try(:id) unless value.is_a? Hash
+        self["#{property}_id".freeze] = value.try(:id) unless value.is_a? Hash
         @attributes[property] = value
       end
     end

@@ -1,11 +1,11 @@
 module GrapeClient
   class Cache
     def initialize
-      clear
+      @objects = {}
     end
 
     def clear
-      @objects = {}
+      @objects.clear
     end
 
     def fetch(params)

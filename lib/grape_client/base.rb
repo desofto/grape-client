@@ -70,7 +70,7 @@ module GrapeClient
 
     def method_missing(m, *args)
       m = m.to_s
-      if m.last == '='
+      if m.last == '='.freeze
         name = m[0..-2]
         self[name] = args.first
       else
@@ -82,7 +82,7 @@ module GrapeClient
       super ||
         begin
           name = method_name.to_s
-          name = name[0..-2] if name.last == '='
+          name = name[0..-2] if name.last == '='.freeze
           self.class.attributes.include?(name.to_sym)
         end
     end
