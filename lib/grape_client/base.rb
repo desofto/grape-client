@@ -13,11 +13,16 @@ module GrapeClient
       attr_accessor :site, :user, :password, :prefix
 
       def inherited(child)
-        child.instance_variable_set(:'@attributes', attributes.try(:dup) || [])
-        child.instance_variable_set(:'@site',       GrapeClient.configuration.site)
-        child.instance_variable_set(:'@user',       GrapeClient.configuration.user)
-        child.instance_variable_set(:'@password',   GrapeClient.configuration.password)
-        child.instance_variable_set(:'@prefix',     GrapeClient.configuration.prefix)
+        super
+        parent = self
+        child.instance_eval do
+          @attributes = parent.attributes.try(:dup) || []
+          return unless GrapeClient.configuration.present?
+          @site       = GrapeClient.configuration.site
+          @user       = GrapeClient.configuration.user
+          @password   = GrapeClient.configuration.password
+          @prefix     = GrapeClient.configuration.prefix
+        end
       end
 
       def attr_accessor(*names)
