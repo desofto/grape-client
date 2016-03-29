@@ -2,6 +2,11 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'minitest-vcr'
 
+if ENV['CODECLIMATE_REPO_TOKEN']
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
+end
+
 require 'grape_client'
 
 VCR.configure do |c|
