@@ -201,17 +201,17 @@ describe GrapeClient::Base, :vcr do
 
   describe '.attributes' do
     it 'User' do
-      expect(User.site).to match 'http://localhost:3000'
+      expect(User.site).to eq 'http://localhost:3000'
       expect(User.attributes).to match [:id, :email, :group_id, :preloaded_group_id]
     end
 
     it 'Group' do
-      expect(Group.site).to match 'http://localhost:3000'
+      expect(Group.site).to eq 'http://localhost:3000'
       expect(Group.attributes).to match [:id, :name]
     end
 
     it 'UserWithName' do
-      expect(UserWithName.site).to match 'https://localhost:3333'
+      expect(UserWithName.site).to eq 'https://localhost:3333'
       expect(UserWithName.attributes).to match [:id, :email, :group_id, :preloaded_group_id, :name]
     end
   end
