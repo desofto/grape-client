@@ -1,0 +1,28 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://user:password@localhost:3000/api/v1/users?email=qwe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Total:
+      - '0'
+      Per-Page:
+      - '25'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '75'
+    body:
+      encoding: UTF-8
+      string: '{"users":[],"meta":{"href":"http://localhost:3000/api/v1/users?email=qwe"}}'
+    http_version: 
+  recorded_at: Tue, 22 Mar 2016 10:56:53 GMT
+recorded_with: VCR 3.0.1
