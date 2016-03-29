@@ -33,7 +33,9 @@ module GrapeClient
     def collect
       result = []
       per_page do |elements|
-        result += elements
+        result += elements.map do |attrs|
+          @clazz.new(attrs)
+        end
       end
       result
     end
