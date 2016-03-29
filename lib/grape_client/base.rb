@@ -62,33 +62,30 @@ module GrapeClient
     end
 
     def [](name)
-      name = name.to_sym
-      raise NameError, name unless self.class.attributes.include? name
-      @attributes[name]
+      @attributes[name.to_sym]
     end
 
     def []=(name, value)
-      name = name.to_sym
-      raise NameError, name unless self.class.attributes.include? name
-      @attributes[name] = value
+      @attributes[name.to_sym] = value
     end
 
-    def method_missing(m, *args)
-      m = m.to_s
-      if m.last == '='.freeze
-        name = m[0..-2]
-        self[name] = args.first
+    def method_missing(method_name, *args)
+      attr_name = map_method_name_to_attribute_name(method_name)
+      if self.class.attributes.include? attr_name.to_sym
+        if method_name.to_s.last == '='.freeze
+          self[attr_name] = args.first
+        else
+          self[attr_name]
+        end
       else
-        self[m]
+        super
       end
     end
 
     def respond_to?(method_name, *args, &block)
       super ||
         begin
-          name = method_name.to_s
-          name = name[0..-2] if name.last == '='.freeze
-          self.class.attributes.include?(name.to_sym)
+          self.class.attributes.include?(map_method_name_to_attribute_name(method_name).to_sym)
         end
     end
 
@@ -100,6 +97,11 @@ module GrapeClient
     end
 
     private
+
+    def map_method_name_to_attribute_name(method_name)
+      name = method_name.to_s
+      name.last == '='.freeze ? name[0..-2] : name
+    end
 
     def class_from_name(name)
       name.to_s.camelcase.constantize
